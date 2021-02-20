@@ -2,23 +2,13 @@ from flask import Flask, send_file
 import requests
 import json
 import os
-
-
-api_key='e46f50f1468f97c817ce9f7598851c3d'
-
-link = {
-    'placeholder_image':{
-        'backdrop_path':''  
-    },
-    'home':'https://api.themoviedb.org/3/trending/movie/week?api_key={}'.format(api_key),
-    'arriving_today':'https://api.themoviedb.org/3/tv/airing_today?api_key={}'.format(api_key),
-}
+from utils import *
 
 app = Flask(__name__)
 
 @app.route('/')
 def test():
-    return str(os.environ)
+    return 'this is in {}'.format(environment)
 
 @app.route('/api/home')
 def home():
@@ -42,8 +32,6 @@ def arriving_today():
         }for i in range(5)]
     }
 
-
-
 @app.route('/api/placeholder_image/<image>')
 def placeholder_image(image):
     if image=='backdrop_path_placeholder.jpg':
@@ -54,4 +42,4 @@ def placeholder_image(image):
         return send_file('profile_placeholder.png', mimetype='image/png')
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=debuging)
