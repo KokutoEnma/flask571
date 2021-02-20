@@ -44,9 +44,6 @@ def arriving_today():
 
 
 
-
-
-
 @app.route('/api/placeholder_image/<image>')
 def placeholder_image(image):
     if image=='backdrop_path_placeholder.jpg':
