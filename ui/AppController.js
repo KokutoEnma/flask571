@@ -80,9 +80,12 @@ class Controller {
                 textBox.classList.add('search-list-item-textbox')
 
                 const title = document.createElement('span')
-                textBox.classList.add('search-list-item-text-title')
+                title.classList.add('search-list-item-text-title')
                 title.innerHTML = e.name
                 textBox.appendChild(title)
+
+                const types = document.createElement('span')
+
 
                 item_wrapper.appendChild(img)
                 item_wrapper.appendChild(textBox)
