@@ -51,10 +51,10 @@ const url = {
     get_search_show: query => (`https://sqtbackend.azurewebsites.net/api/search_show/${query}`),
     get_search_multi: query => (`https://sqtbackend.azurewebsites.net/api/search_multi/${query}`),
     get_movie_detail: id => (`https://sqtbackend.azurewebsites.net/api/movie_detail/${id}`),
-    get_movie_credites: id => (`https://sqtbackend.azurewebsites.net/api/movie_credits/${id}`),
+    get_movie_credits: id => (`https://sqtbackend.azurewebsites.net/api/movie_credits/${id}`),
     get_movie_reviews: id => (`https://sqtbackend.azurewebsites.net/api/movie_reviews/${id}`),
     get_show_detail: id => (`https://sqtbackend.azurewebsites.net/api/show_detail/${id}`),
-    get_show_credites: id => (`https://sqtbackend.azurewebsites.net/api/show_credits/${id}`),
+    get_show_credits: id => (`https://sqtbackend.azurewebsites.net/api/show_credits/${id}`),
     get_show_reviews: id => (`https://sqtbackend.azurewebsites.net/api/show_reviews/${id}`),
     get_placeholder_image: image => (`https://sqtbackend.azurewebsites.net/api/placeholder_image/${image}`),
 }

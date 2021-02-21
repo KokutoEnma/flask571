@@ -85,9 +85,10 @@ def movie_detail(id):
     genre_res = genre_list_movie()['data']
     return {'data':{
         'id':res['id'],
-        'title':res['title'],
+        'name':res['title'],
         'runtime':res['runtime'],
         'date':res['release_date'],
+        'overview':res['overview'],
         'languages':', '.join([item['name'] for item in res['spoken_languages']]),
         'vote_average':res['vote_average'],
         'vote_count':res['vote_count'],

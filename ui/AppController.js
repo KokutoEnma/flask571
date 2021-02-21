@@ -31,60 +31,183 @@ class Controller {
         this.modal.appendChild(close)
 
         if (type === 'movie')
-            this.requester.fetch_movie_detail(id, res => this.buildModalDetail(res, type))
+            this.requester.fetch_movie_detail(id, res => this.buildModalDetail(id, res, type))
         else if (type === 'tv')
-            this.requester.fetch_show_detail(id, res => this.buildModalDetail(res, type))
+            this.requester.fetch_show_detail(id, res => this.buildModalDetail(id, res, type))
     }
 
-    buildModalDetail(res, type) {
+    buildModalDetail(id, res, type) {
         const { data, error, message } = res
-        if (error) this.modal.innerHTML = message
+        if (error) this.modal.innerHTML = `load detail failed, error: ${message}`
         else {
             console.log(data)
+            const image = document.createElement('img')
+            image.src = data.backdrop_path
+            image.classList.add('modal-detail-image')
+
+            const detailWrapper = document.createElement('div')
+            detailWrapper.classList.add('modal-item-box')
+
+            const detailTitle = document.createElement('span')
+            detailTitle.classList.add('modal-detail-title')
+            detailTitle.innerHTML = data.name
+
+            const titleIcon = document.createElement('span')
+            titleIcon.innerHTML = '<a>&#9432;'
+            titleIcon.addEventListener('click', e => window.open(`https://www.themoviedb.org/${type}/${data.id}`))
+            detailTitle.appendChild(titleIcon)
+
+            const types = document.createElement('div')
+            types.classList.add('modal-detail-types')
+            types.innerHTML = `${new Date(data.date).getFullYear()}|${data.genres}`
+
+            const ratingsBox = document.createElement('div')
+            ratingsBox.classList.add('modal-detail-ratings-box')
+            const ratings = document.createElement('span')
+            ratings.classList.add('modal-detail-ratings')
+            ratings.innerHTML = `${data.vote_average / 2}/5.0 `
+            const votes = document.createElement('span')
+            votes.innerHTML = `${data.vote_count} votes`
+            ratingsBox.appendChild(ratings)
+            ratingsBox.appendChild(votes)
+
+            const description = document.createElement('div')
+            description.classList.add('modal-detail-description')
+            description.innerHTML = data.overview
+
+            const languages = document.createElement('div')
+            languages.classList.add('modal-detail-language')
+            languages.innerHTML = `Spoken languages: ${data.languages}`
+
+            detailWrapper.appendChild(detailTitle)
+            detailWrapper.appendChild(types)
+            detailWrapper.appendChild(ratingsBox)
+            detailWrapper.appendChild(description)
+            detailWrapper.appendChild(languages)
+
+            this.modal.appendChild(image)
+            this.modal.appendChild(detailWrapper)
+
         }
 
-        const image = document.createElement('img')
-        image.src = data.backdrop_path
-        image.classList.add('modal-detail-image')
 
-        const detailWrapper = document.createElement('div')
-        detailWrapper.classList.add('modal-item-box')
+        if (type == 'movie')
+            this.requester.fetch_movie_credits(id, res => this.buildModalCredits(id, res, type))
+        else if (type == 'tv')
+            this.requester.fetch_show_credits(id, res => this.buildModalCredits(id, res, type))
+    }
 
-        const detailTitle = document.createElement('span')
-        detailTitle.classList.add('modal-detail-title')
-        detailTitle.innerHTML = data.name
+    buildModalCredits(id, res, type) {
+        const { data, error, message } = res
+        if (error) this.modal.innerHTML = `load credits failed, error: ${message}`
+        else {
+            const wrapper = document.createElement('div')
+            wrapper.classList.add('modal-item-box')
 
-        const titleIcon = document.createElement('span')
-        titleIcon.innerHTML = '<a>&#9432;'
-        titleIcon.addEventListener('click', e => window.open(`https://www.themoviedb.org/${type}/${data.id}`))
-        detailTitle.appendChild(titleIcon)
+            const title = document.createElement('div')
+            title.classList.add('modal-credit-title')
+            title.innerHTML = 'Cast'
 
-        const types = document.createElement('div')
-        types.classList.add('modal-detail-types')
-        types.innerHTML = `${new Date(data.date).getFullYear()}|${data.genres}`
+            const castContainer = document.createElement('div')
+            castContainer.classList.add('modal-cast-container')
 
-        const ratingsBox = document.createElement('div')
-        ratingsBox.classList.add('modal-detail-ratings-box')
-        const ratings = document.createElement('span')
-        ratings.classList.add('modal-detail-ratings')
-        ratings.innerHTML = `${data.vote_average / 2}/5.0 `
-        const votes = document.createElement('span')
-        votes.innerHTML = `${data.vote_count} votes`
-        ratingsBox.appendChild(ratings)
-        ratingsBox.appendChild(votes)
+            const casts = data.map(e => {
+                const castBox = document.createElement('div')
+                castBox.classList.add('modal-cast-box')
 
-        const description = document.createElement('div')
-        description.classList.add('modal-detail-description')
-        description.innerHTML = data.overview
+                const image = document.createElement('img')
+                image.classList.add('modal-cast-image')
+                image.src = e.image
 
-        detailWrapper.appendChild(detailTitle)
-        detailWrapper.appendChild(types)
-        detailWrapper.appendChild(ratingsBox)
-        detailWrapper.appendChild(description)
+                const name = document.createElement('div')
+                name.classList.add('modal-cast-name')
+                name.innerHTML = e.name
 
-        this.modal.appendChild(image)
-        this.modal.appendChild(detailWrapper)
+                const as = document.createElement('div')
+                as.innerHTML = 'AS'
 
+                const character = document.createElement('div')
+                character.classList.add('modal-cast-character')
+                character.innerHTML = e.character
+
+                castBox.appendChild(image)
+                castBox.appendChild(name)
+                castBox.appendChild(as)
+                castBox.appendChild(character)
+
+                return castBox
+            });
+
+            wrapper.appendChild(title)
+            casts.forEach(e => castContainer.appendChild(e))
+            wrapper.appendChild(castContainer)
+
+            this.modal.appendChild(wrapper)
+        }
+
+        if (type == 'movie')
+            this.requester.fetch_movie_reviews(id, res => this.buildModalReviews(id, res, type))
+        else if (type == 'tv')
+            this.requester.fetch_show_reviews(id, res => this.buildModalReviews(id, res, type))
+    }
+
+    buildModalReviews(id, res, type) {
+        const { data, error, message } = res
+        if (error) this.modal.innerHTML = `load reviews failed, error: ${message}`
+        else {
+            const wrapper = document.createElement('div')
+            wrapper.classList.add('modal-item-box')
+
+            const title = document.createElement('div')
+            title.classList.add('modal-credit-title')
+            title.innerHTML = 'Reviews'
+
+            const reviews = data.map(e => {
+                const reviewWrapper = document.createElement('div')
+                reviewWrapper.classList.add('modal-review-wrapper')
+
+                const reviewTitle = document.createElement('div')
+                reviewTitle.classList.add('modal-review-title')
+
+                const poster = document.createElement('span')
+                poster.classList.add('modal-review-poster')
+                poster.innerHTML = e.username
+
+                const dateDom = document.createElement('span')
+                const date = new Date(e.date)
+                dateDom.innerHTML = `on ${((date.getMonth().toString().length > 1) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate().toString().length > 1) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear()}`
+
+                reviewTitle.appendChild(poster)
+                reviewTitle.appendChild(dateDom)
+
+                const votes = document.createElement('div')
+                votes.classList.add('modal-review-votes')
+                votes.innerHTML = `&#9733; ${e.rating / 2}/5`
+
+                const content = document.createElement('div')
+                content.classList.add('modal-review-content')
+                content.innerHTML = e.content
+
+
+                const line = document.createElement('div')
+                line.classList.add('modal-review-line')
+
+
+                reviewWrapper.appendChild(reviewTitle)
+                if (e.rating)
+                    reviewWrapper.appendChild(votes)
+                reviewWrapper.appendChild(content)
+                reviewWrapper.appendChild(line)
+
+
+                return reviewWrapper
+            })
+
+            wrapper.appendChild(title)
+            reviews.forEach(e => wrapper.appendChild(e))
+
+            this.modal.appendChild(wrapper)
+        }
     }
 
     initSearch() {

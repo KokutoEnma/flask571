@@ -273,18 +273,20 @@ th{
     display: none;
     flex-direction: row;
     justify-content: center;
+    overflow: scroll;
 }
 
 #modal-container{
     width: 80%;
     background-color: rgb(189, 186, 186);
     margin-top: 64px;
-    min-height: 640px;
     padding:32px;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-grow: inherit;
+    height: max-content;
 }
 
 .close {
@@ -343,4 +345,81 @@ th{
 
 .modal-detail-description{
     margin-top: 24px;
+}
+
+.modal-detail-language{
+    font-style: italic;
+    margin-top: 12px;
+}
+
+.modal-credit-title{
+    margin-top: 32px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.modal-cast-container{
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.modal-cast-box{
+    width: calc(25% - 12px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: cen;
+    text-align: center;
+}
+.modal-cast-image{
+    width: 100%;
+    height: auto;
+}
+
+.modal-cast-name{
+    font-weight: bold;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
+}
+
+.modal-cast-character{
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
+}
+
+.modal-review-wrapper{
+    margin-top: 24px;
+}
+
+.modal-review-title{
+    margin-bottom: 16px;
+}
+
+.modal-review-poster{
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.modal-review-votes{
+    color: red;
+}
+
+.modal-review-content{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: 56.25px;
+}
+
+.modal-review-line{
+    width: 80%;
+    border-bottom: gray solid 1px;
+    margin-top: 8px;
+    margin-left: 10%;   
 }
