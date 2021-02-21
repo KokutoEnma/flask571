@@ -82,10 +82,14 @@ class Controller {
                 const title = document.createElement('span')
                 title.classList.add('search-list-item-text-title')
                 title.innerHTML = e.name
-                textBox.appendChild(title)
+
 
                 const types = document.createElement('span')
+                types.classList.add('search-list-item-types')
+                types.innerHTML = `${new Date(e.date).getFullYear()} | ${e.genres}`
 
+                textBox.appendChild(title)
+                textBox.appendChild(types)
 
                 item_wrapper.appendChild(img)
                 item_wrapper.appendChild(textBox)

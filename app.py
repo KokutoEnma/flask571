@@ -34,7 +34,7 @@ def search_movie(query):
     genre_res = genre_list_movie()['data']
     return {'data':
     [{
-        'type':item['media_type'],
+        'type':item['media_type'] if 'media_type' in item else 'movie',
         'id':item['id'],
         'name':item['title'],
         'overview':item['overview'],
@@ -50,7 +50,7 @@ def search_show(query):
     res = json.loads(requests.get(get_search_show(query.replace(' ', '%20'))).content)['results']
     genre_res = genre_list_tv()['data']
     return {'data':[{
-        'type':item['media_type'],
+        'type':item['media_type'] if 'media_type' in item else 'tv',
         'id':item['id'] if 'id' in item else 'Not Available',
         'name':item['name'] if 'name' in item else 'Not Available',
         'overview':item['overview'] if 'overview' in item else 'Not Available',
@@ -68,7 +68,7 @@ def search_multi(query):
     genre_res_tv = genre_list_tv()['data']
 
     return {'data':[{
-        'type':item['media_type'],
+        'type':item['media_type'] if 'media_type' in item else 'movie' if 'release_date' in item else 'tv',
         'id':item['id'] if 'id' in item else 'Not Available',
         'name':item['name'] if 'name' in item else item['title'],
         'overview':item['overview'] if 'overview' in item else 'Not Available',
