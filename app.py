@@ -88,7 +88,7 @@ def movie_detail(id):
         'title':res['title'],
         'runtime':res['runtime'],
         'date':res['release_date'],
-        'languages':res['spoken_languages'],
+        'languages':', '.join([item['name'] for item in res['spoken_languages']]),
         'vote_average':res['vote_average'],
         'vote_count':res['vote_count'],
         'poster_path':link['image']['poster_path']+res['poster_path'] if res['poster_path'] else link['placeholder_image']['poster_path'],
@@ -100,10 +100,10 @@ def movie_detail(id):
 def movie_credits(id):
     res = json.loads(requests.get(get_movie_credits(id)).content)['cast']
     return {'data': [{
-        'name':item['name'],
-        'image':link['image']['profile_path']+item['profile_path'] if item['profile_path'] else link['placeholder_image']['profile_path'],
-        'character':item['character']
-    } for item in res]}
+        'name':res[i]['name'],
+        'image':link['image']['profile_path']+res[i]['profile_path'] if res[i]['profile_path'] else link['placeholder_image']['profile_path'],
+        'character':res[i]['character']
+    } for i in range(8) if i<len(res)]}
 
 @app.route('/api/movie_reviews/<id>', methods=['GET'])
 def movie_reviews(id):
@@ -129,7 +129,7 @@ def show_detail(id):
         'overview':res['overview'],
         'poster_path':link['image']['poster_path']+res['poster_path'] if res['poster_path'] else link['placeholder_image']['poster_path'],
         'backdrop_path':link['image']['backdrop_path']+res['backdrop_path'] if res['backdrop_path'] else link['placeholder_image']['backdrop_path'],
-        'languages':res['spoken_languages'],
+        'languages':', '.join([item['name'] for item in res['spoken_languages']]),
         'vote_average':res['vote_average'],
         'vote_count':res['vote_count'],
     }for item in res}
@@ -138,10 +138,10 @@ def show_detail(id):
 def show_credits(id):
     res = json.loads(requests.get(get_show_credits(id)).content)['cast']
     return {'data': [{
-        'name':item['name'],
-        'image':link['image']['profile_path']+item['profile_path'] if item['profile_path'] else link['placeholder_image']['profile_path'],
-        'character':item['character']
-    } for item in res]}
+        'name':res[i]['name'],
+        'image':link['image']['profile_path']+res[i]['profile_path'] if res[i]['profile_path'] else link['placeholder_image']['profile_path'],
+        'character':res[i]['character']
+    } for i in range(8) if i<len(res)]}
 
 
 @app.route('/api/show_reviews/<id>', methods=['GET'])

@@ -17,6 +17,75 @@ class Controller {
         this.initSearch()
     }
 
+    initModal(id, type) {
+        this.modalWrapper = document.getElementById('modal-wrapper')
+        this.modal = document.getElementById('modal-container')
+        this.removeAllChildNodes(this.modal)
+
+        const close = document.createElement('span')
+        close.classList.add('close')
+        close.innerHTML = '&times;'
+        close.addEventListener('click', e => this.modalWrapper.style.display = 'none')
+
+        this.modalWrapper.style.display = 'flex'
+        this.modal.appendChild(close)
+
+        if (type === 'movie')
+            this.requester.fetch_movie_detail(id, res => this.buildModalDetail(res, type))
+        else if (type === 'tv')
+            this.requester.fetch_show_detail(id, res => this.buildModalDetail(res, type))
+    }
+
+    buildModalDetail(res, type) {
+        const { data, error, message } = res
+        if (error) this.modal.innerHTML = message
+        else {
+            console.log(data)
+        }
+
+        const image = document.createElement('img')
+        image.src = data.backdrop_path
+        image.classList.add('modal-detail-image')
+
+        const detailWrapper = document.createElement('div')
+        detailWrapper.classList.add('modal-item-box')
+
+        const detailTitle = document.createElement('span')
+        detailTitle.classList.add('modal-detail-title')
+        detailTitle.innerHTML = data.name
+
+        const titleIcon = document.createElement('span')
+        titleIcon.innerHTML = '<a>&#9432;'
+        titleIcon.addEventListener('click', e => window.open(`https://www.themoviedb.org/${type}/${data.id}`))
+        detailTitle.appendChild(titleIcon)
+
+        const types = document.createElement('div')
+        types.classList.add('modal-detail-types')
+        types.innerHTML = `${new Date(data.date).getFullYear()}|${data.genres}`
+
+        const ratingsBox = document.createElement('div')
+        ratingsBox.classList.add('modal-detail-ratings-box')
+        const ratings = document.createElement('span')
+        ratings.classList.add('modal-detail-ratings')
+        ratings.innerHTML = `${data.vote_average / 2}/5.0 `
+        const votes = document.createElement('span')
+        votes.innerHTML = `${data.vote_count} votes`
+        ratingsBox.appendChild(ratings)
+        ratingsBox.appendChild(votes)
+
+        const description = document.createElement('div')
+        description.classList.add('modal-detail-description')
+        description.innerHTML = data.overview
+
+        detailWrapper.appendChild(detailTitle)
+        detailWrapper.appendChild(types)
+        detailWrapper.appendChild(ratingsBox)
+        detailWrapper.appendChild(description)
+
+        this.modal.appendChild(image)
+        this.modal.appendChild(detailWrapper)
+
+    }
 
     initSearch() {
         this.kinput = document.getElementById('kinput')
@@ -79,17 +148,36 @@ class Controller {
                 const textBox = document.createElement('div')
                 textBox.classList.add('search-list-item-textbox')
 
-                const title = document.createElement('span')
+                const title = document.createElement('div')
                 title.classList.add('search-list-item-text-title')
                 title.innerHTML = e.name
 
+                const text = document.createElement('div')
+                text.classList.add('search-list-item-types')
 
-                const types = document.createElement('span')
-                types.classList.add('search-list-item-types')
+                const types = document.createElement('div')
                 types.innerHTML = `${new Date(e.date).getFullYear()} | ${e.genres}`
 
+                const points = document.createElement('div')
+                points.innerHTML = `<span style='color:red'>${e.vote_average / 2}/5.0    </span><span>${e.vote_count} votes</span>`
+
+                text.appendChild(types)
+                text.appendChild(points)
+
+                const description = document.createElement('span')
+                description.classList.add('search-list-item-types')
+                description.setAttribute('id', 'search-list-item-description')
+                description.innerHTML = e.overview
+
+                const button = document.createElement('button')
+                button.innerHTML = 'show more'
+                button.setAttribute('id', 'show-more-btn')
+                button.addEventListener('click', () => this.initModal(e.id, e.type))
+
                 textBox.appendChild(title)
-                textBox.appendChild(types)
+                textBox.appendChild(text)
+                textBox.appendChild(description)
+                textBox.appendChild(button)
 
                 item_wrapper.appendChild(img)
                 item_wrapper.appendChild(textBox)
@@ -99,6 +187,8 @@ class Controller {
             items.forEach(e => wrapper.appendChild(e))
         }
     }
+
+
 
     removeAllChildNodes(dom) {
         while (dom.firstChild)
