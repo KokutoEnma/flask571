@@ -248,16 +248,19 @@ class Controller {
     buildSearchList(res) {
         const { error, message, data } = res
         const errorDom = document.getElementById('search-error')
+        const wrapper = document.getElementById('search-list-wrapper')
+        this.removeAllChildNodes(wrapper)
+
         if (error) {
             errorDom.innerHTML = message
             errorDom.style.display = 'block'
-        } else if (data.length === 0)
+        } else if (data.length === 0) {
+            errorDom.innerHTML = 'No Result Found'
             errorDom.style.display = 'block'
-        else {
-            console.log(data)
+        }
 
-            const wrapper = document.getElementById('search-list-wrapper')
-            this.removeAllChildNodes(wrapper)
+        else {
+            errorDom.style.display = 'none'
 
             const showingMessage = document.createElement('p')
             showingMessage.innerHTML = 'Showing results...'

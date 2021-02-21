@@ -262,6 +262,11 @@ th{
     width: 84px;
     height: 24px;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+#show-more-btn:hover{
+    background-color: lightgray;
 }
 
 #modal-wrapper{
