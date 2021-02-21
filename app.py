@@ -41,7 +41,7 @@ def search_movie(query):
         'date':item['release_date'],
         'vote_average':item['vote_average'],
         'vote_count':item['vote_count'],
-        'genre_ids':' '.join([genre_res[str(id)] for id in item['genre_ids']])
+        'genre_ids':', '.join([genre_res[str(id)] for id in item['genre_ids']])
     }for item in res]}
     
 @app.route('/api/search_show/<query>', methods=['GET'])
@@ -56,7 +56,7 @@ def search_show(query):
         'date':item['first_air_date'] if 'first_air_date' in item else 'Not Available',
         'vote_average':item['vote_average'] if 'vote_average' in item else 'Not Available',
         'vote_count':item['vote_count'] if 'vote_count' in item else 'Not Available',
-        'genre_ids':' '.join([genre_res[str(id)] for id in item['genre_ids']])
+        'genre_ids':', '.join([genre_res[str(id)] for id in item['genre_ids']])
     }for item in res]}
 
 @app.route('/api/search_multi/<query>', methods=['GET'])
@@ -72,7 +72,7 @@ def search_multi(query):
         'date':item['first_air_date'] if 'first_air_date' in item else item['release_date'] if 'release_date' in item else 'Not Available',
         'vote_average':item['vote_average'] if 'vote_average' in item else 'Not Available',
         'vote_count':item['vote_count'] if 'vote_count' in item else 'Not Available',
-        'genre_ids':' '.join([genre_res_movie[str(id)] if str(id) in genre_res_movie else genre_res_tv[str(id)] for id in item['genre_ids']])
+        'genre_ids':', '.join([genre_res_movie[str(id)] if str(id) in genre_res_movie else genre_res_tv[str(id)] for id in item['genre_ids']])
     }for item in res]}
 
 @app.route('/api/movie_detail/<id>', methods=['GET'])
