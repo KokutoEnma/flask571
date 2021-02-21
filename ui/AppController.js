@@ -228,8 +228,12 @@ class Controller {
 
         if (category === 'empty' || query === '') {
             this.searchBtn.style.backgroundColor = 'red'
-            alert('Please fill out this field')
-            this.searchBtn.style.backgroundColor = 'black'
+            setTimeout(() => {
+                alert('Please fill out this field')
+                this.searchBtn.style.backgroundColor = 'black'
+            }, 500);
+
+            // this.searchBtn.style.backgroundColor = 'black'
         } else {
             if (category === 'movie') {
                 this.requester.fetch_search_movie(query, res => this.buildSearchList(res))

@@ -169,7 +169,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background:linear-gradient(to bottom, #cc0000 -4%, #000000 30%);
+    background:linear-gradient(to bottom, #cc0000 -4%, #000000 120%);
 }
 
 #search-error{
@@ -200,9 +200,9 @@ th{
 }
 
 #search-btn, #clear-btn{
-    background-color: black;
     color:white;
     border-color: black;
+    cursor: pointer;
 }
 
 #search-list-wrapper{

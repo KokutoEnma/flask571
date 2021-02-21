@@ -6,6 +6,29 @@ from utils import *
 
 app = Flask(__name__)
 
+@app.route('/')
+def home():
+    li = [
+        "<div><a href='https://sqtbackend.azurewebsites.net/'>home</a></div>",
+        "<div><a href='https://cs210032000b9b49df9.z13.web.core.windows.net/'>front end</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/trending_movie'>trending movie</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/arriving_today'>arriving today</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/search_movie/doctor'>try search movie key word: doctor</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/search_show/doctor'>try search show key word: doctor</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/search_multi/doctor'>try search multi key word: doctor</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/movie_detail/284052'>try movie detail with id: 284052</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/movie_credits/284052'>try movie credits with id: 284052</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/movie_reviews/284052'>try movie reviews with id: 284052</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/show_detail/1399'>try show detail with id: 284052</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/show_credits/1399'>try show credits with id: 284052</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/show_reviews/1399'>try show reviews with id: 284052</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/genre_list/movie'>movie genre list </a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/genre_list/tv'>tv show genre list </a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api/placeholder_image/backdrop_path_placeholder.jpg'>try placeholer image: backdrop_path_placeholder.jpg</a></div>",
+    ]
+    
+    return '<div>{}</div>'.format(''.join(li))
+
 @app.route('/api/trending_movie', methods=['GET'])
 def trending_movie():
     res = json.loads(requests.get(link['home']).content)['results']
