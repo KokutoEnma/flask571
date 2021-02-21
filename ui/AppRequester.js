@@ -1,0 +1,7 @@
+class Requester {
+    constructor() {
+
+    }
+
+    fetch() { }
+}

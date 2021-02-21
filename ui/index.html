@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <link rel="stylesheet" href="./App.css">
+    <script src='AppController.js'></script>
+    <script src="AppRequester.js"></script>
+</head>
+
+<body>
+    <div id='root'>
+        <div>
+            <nav>
+                <span>THE MOVIE DB</span>
+            </nav>
+            <div id='container'>
+                <div id='sidebar'>
+                    <div>
+                        <div class='sidebar-tab' id='sidebar-tab-home'>
+                            <span>Home</span>
+                            <span>&#8594;</span>
+                        </div>
+                        <div class='sidebar-tab' id='sidebar-tab-search'>
+                            <span>Search</span>
+                            <span>&#8594;</span>
+                        </div>
+                    </div>
+                </div>
+                <div id='content'>
+                    <div id='display-wrapper'>
+                        <div class="display" id='display-home'>
+                            <span>Trending Movies</span>
+                            <div></div>
+                            <span>TV Shows On-Air Today</span>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div id='footer'>
+                        <span>Designed and developed by Shaw S. Yu</span>
+                        <span>Powered by TSDB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        const controller = new Controller()
+        controller.init()
+    </script>
+</body>
+
+</html>
