@@ -31,9 +31,44 @@
                     <div id='display-wrapper'>
                         <div class="display" id='display-home'>
                             <span>Trending Movies</span>
-                            <div></div>
+                            <div id='home-trending-movie'>
+                            </div>
+
                             <span>TV Shows On-Air Today</span>
-                            <div></div>
+                            <div id='home-arriving-today'>
+                            </div>
+                        </div>
+                        <div class="display" id='display-search'>
+                            <div id='display-input'>
+                                <span>Search</span>
+                                <table id='search-box'>
+                                    <tr>
+                                        <th><label for="kinput">Keyword*</label></th>
+                                        <th><input type="text" id="kinput" name="kinput"></th>
+                                    </tr>
+                                    <tr>
+                                        <th><label for="kinput">Category*</label></th>
+                                        <th>
+                                            <select name="category" id="category">
+                                                <option value="empty"></option>
+                                                <option value="movie">Movies</option>
+                                                <option value="show">TV Shows</option>
+                                                <option value="multi">Movies and TV Shows</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th id='btn-wrapper'>
+                                            <button id='search-btn'>Search</button>
+                                            <button id='clear-btn'>clear</button>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <span id='search-error'>No Results Found</span>
+                            <div id='search-list-wrapper'>
+                            </div>
                         </div>
                     </div>
                     <div id='footer'>
@@ -41,8 +76,10 @@
                         <span>Powered by TSDB</span>
                     </div>
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
     </div>
     <script>

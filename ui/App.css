@@ -81,6 +81,7 @@ body{
 }
 
 #footer{
+    margin-top: 48px;
     display: flex;
     position: absolute;
     bottom: 0px;
@@ -99,7 +100,6 @@ body{
 
 .display{
     width: 90%;
-    background-color: darkblue;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -107,5 +107,135 @@ body{
 
 
 .hide{
-    visibility: hidden;
+    display: none;
+}
+
+
+.display>div{
+    width: 80%;
+    margin-top: 24px;
+    margin-bottom: 48;
+}
+
+.display>span{
+    margin-top: 32px;
+}
+
+.display>div>div{
+    display: none;
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+    transition: ease-in-out 0.5s;
+    position: relative;
+}
+
+@-webkit-keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+  
+
+.display>div>div>img{
+    width: 100%;
+    height: auto;
+}
+
+.home-list-item-title{
+    position: absolute;
+    bottom: 0px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#display-search{
+    
+}
+
+#display-input{
+    margin-top: 6px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:linear-gradient(to bottom, #cc0000 -4%, #000000 30%);
+}
+
+#search-error{
+    display: none;
+}
+
+#search-box{
+    width: 80%;
+}
+
+#kinput{
+    width: 100%;
+    border-radius: 3px;
+}
+
+th{
+    padding-bottom: 12px;
+    padding-top: 12px;
+}
+
+#category{
+    float: left;
+}
+
+#btn-wrapper{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#search-btn, #clear-btn{
+    background-color: black;
+    color:white;
+    border-color: black;
+}
+
+#search-list-wrapper{
+    width: 96%;
+    display: none;
+}
+
+#search-list-wrapper>div{
+    display: block;
+}
+
+.search-list-item{
+    display: flex !important;
+    justify-content: space-between;
+    margin-top: 16px;
+    flex-direction: row;
+}
+
+.search-list-item>img{
+    width: 128px !important;
+    height: auto !important;
+    border-left: red solid 6px;
+}
+
+.search-list-item-textbox{
+    display: flex;
+    flex-direction: column;
+    background-color: thistle;
+    width: calc(100% - 160px);
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.search-list-item-text-title{
+    font-size: 18px;
 }
