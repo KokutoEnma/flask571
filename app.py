@@ -1,10 +1,13 @@
 from flask import Flask, send_file
+from flask_cors import CORS
 import requests
 import json
 import os
 from utils import *
 
 app = Flask(__name__, static_url_path='', static_folder='static')
+CORS(app)
+
 
 @app.route('/')
 def home():
