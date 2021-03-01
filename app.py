@@ -13,7 +13,7 @@ CORS(app)
 def home():
     li = [
         "<div><a href='https://sqtbackend.azurewebsites.net/'>home</a></div>",
-        "<div><a href='https://cs210032000b9b49df9.z13.web.core.windows.net/'>front end</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/ui'>front end</a></div>",
         "<div><a href='https://sqtbackend.azurewebsites.net/api/trending_movie'>trending movie</a></div>",
         "<div><a href='https://sqtbackend.azurewebsites.net/api/arriving_today'>arriving today</a></div>",
         "<div><a href='https://sqtbackend.azurewebsites.net/api/search_movie/doctor'>try search movie key word: doctor</a></div>",
