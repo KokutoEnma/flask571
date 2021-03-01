@@ -4,7 +4,7 @@ import json
 import os
 from utils import *
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='', static_folder='static')
 
 @app.route('/')
 def home():
@@ -32,7 +32,7 @@ def home():
 
 @app.route('/ui')
 def ui():
-    return app.send_static_file('./static/index.html')
+    return app.send_static_file('index.html')
 
 @app.route('/api/trending_movie', methods=['GET'])
 def trending_movie():
