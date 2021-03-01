@@ -29,6 +29,11 @@ def home():
     
     return '<div>{}</div>'.format(''.join(li))
 
+
+@app.route('/ui')
+def ui():
+    return app.send_static_file('./static/index.html')
+
 @app.route('/api/trending_movie', methods=['GET'])
 def trending_movie():
     res = json.loads(requests.get(link['home']).content)['results']
