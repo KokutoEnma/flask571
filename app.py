@@ -206,4 +206,4 @@ def placeholder_image(image):
         return send_file('profile_placeholder.png', mimetype='image/png')
 
 if __name__ == "__main__":
-    app.run(debug=debuging)
+    app.run(debug=debuging, port=3002, host='0.0.0.0')
