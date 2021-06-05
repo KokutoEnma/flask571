@@ -9,11 +9,11 @@ app = Flask(__name__, static_url_path='', static_folder='static')
 CORS(app)
 
 
-@app.route('/')
+@app.route('/api')
 def home():
     li = [
-        "<div><a href='https://sqtbackend.azurewebsites.net/'>home</a></div>",
-        "<div><a href='https://sqtbackend.azurewebsites.net/ui'>front end</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/api'>home</a></div>",
+        "<div><a href='https://sqtbackend.azurewebsites.net/'>front end</a></div>",
         "<div><a href='https://sqtbackend.azurewebsites.net/api/trending_movie'>trending movie</a></div>",
         "<div><a href='https://sqtbackend.azurewebsites.net/api/arriving_today'>arriving today</a></div>",
         "<div><a href='https://sqtbackend.azurewebsites.net/api/search_movie/doctor'>try search movie key word: doctor</a></div>",
@@ -33,7 +33,7 @@ def home():
     return '<div>{}</div>'.format(''.join(li))
 
 
-@app.route('/ui')
+@app.route('/')
 def ui():
     return app.send_static_file('index.html')
 
