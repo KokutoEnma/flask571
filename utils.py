@@ -7,7 +7,7 @@ environment = os.environ.get('ENV')
 debuging = True if os.environ.get('ENV') == 'DEVELOPMENT' else False
 api_key='e46f50f1468f97c817ce9f7598851c3d'
 
-url = 'http://localhost:5000' if debuging == True else 'https://sqtbackend.azurewebsites.net/'
+url = 'http://localhost:5000' if debuging == True else 'http://flsk.shaw-yu.com/'
 
 link = {
     'placeholder_image':{

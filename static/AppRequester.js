@@ -45,16 +45,16 @@ class Requester {
 
 
 const url = {
-    trending_movie: 'https://sqtbackend.azurewebsites.net/api/trending_movie',
-    arriving_today: 'https://sqtbackend.azurewebsites.net/api/arriving_today',
-    get_search_movie: query => (`https://sqtbackend.azurewebsites.net/api/search_movie/${query}`),
-    get_search_show: query => (`https://sqtbackend.azurewebsites.net/api/search_show/${query}`),
-    get_search_multi: query => (`https://sqtbackend.azurewebsites.net/api/search_multi/${query}`),
-    get_movie_detail: id => (`https://sqtbackend.azurewebsites.net/api/movie_detail/${id}`),
-    get_movie_credits: id => (`https://sqtbackend.azurewebsites.net/api/movie_credits/${id}`),
-    get_movie_reviews: id => (`https://sqtbackend.azurewebsites.net/api/movie_reviews/${id}`),
-    get_show_detail: id => (`https://sqtbackend.azurewebsites.net/api/show_detail/${id}`),
-    get_show_credits: id => (`https://sqtbackend.azurewebsites.net/api/show_credits/${id}`),
-    get_show_reviews: id => (`https://sqtbackend.azurewebsites.net/api/show_reviews/${id}`),
-    get_placeholder_image: image => (`https://sqtbackend.azurewebsites.net/api/placeholder_image/${image}`),
+    trending_movie: 'http://flsk.shaw-yu.com/api/trending_movie',
+    arriving_today: 'http://flsk.shaw-yu.com/api/arriving_today',
+    get_search_movie: query => (`http://flsk.shaw-yu.com/api/search_movie/${query}`),
+    get_search_show: query => (`http://flsk.shaw-yu.com/api/search_show/${query}`),
+    get_search_multi: query => (`http://flsk.shaw-yu.com/api/search_multi/${query}`),
+    get_movie_detail: id => (`http://flsk.shaw-yu.com/api/movie_detail/${id}`),
+    get_movie_credits: id => (`http://flsk.shaw-yu.com/api/movie_credits/${id}`),
+    get_movie_reviews: id => (`http://flsk.shaw-yu.com/api/movie_reviews/${id}`),
+    get_show_detail: id => (`http://flsk.shaw-yu.com/api/show_detail/${id}`),
+    get_show_credits: id => (`http://flsk.shaw-yu.com/api/show_credits/${id}`),
+    get_show_reviews: id => (`http://flsk.shaw-yu.com/api/show_reviews/${id}`),
+    get_placeholder_image: image => (`http://flsk.shaw-yu.com/api/placeholder_image/${image}`),
 }
